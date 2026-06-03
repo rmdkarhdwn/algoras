@@ -7,8 +7,8 @@
   "home": {
     "badge": "Algorithm Atlas",
     "kicker": "Interactive Learning Platform",
-    "title": "A visual learning space for algorithms and data structures",
-    "description": "This starter structure is designed to pair step-by-step execution, code examples, and complexity notes in one place.",
+    "title": "Understand Algorithms Visually",
+    "description": "Step through each algorithm, compare code side by side, and build intuition for complexity — all in one interactive space.",
     "primaryCta": "Browse algorithms",
     "secondaryCta": "Explore data structures",
     "sideLabel": "Starter Metrics",
@@ -19,16 +19,16 @@
     ],
     "sections": [
       {
-        "title": "Visualizer Core",
-        "description": "A dedicated slot for SVG or Canvas-based visualization components."
+        "title": "Sorting Algorithms",
+        "description": "Visualize Bubble, Quick, and Merge Sort step by step"
       },
       {
-        "title": "Code Viewer",
-        "description": "A separated code sample area that can later be upgraded with Shiki highlighting."
+        "title": "Data Structures",
+        "description": "Interact with Arrays, Stacks, and Queues hands-on"
       },
       {
-        "title": "State Store",
-        "description": "A Zustand-ready foundation for playback, pause, and speed controls."
+        "title": "Complexity Chart",
+        "description": "Compare time and space complexity across algorithms at a glance"
       }
     ]
   }

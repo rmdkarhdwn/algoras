@@ -17,9 +17,9 @@ export function Header({ locale, labels }: HeaderProps) {
   ];
 
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-white/60 backdrop-blur-xl">
+    <header className="sticky top-0 z-20 border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4 md:px-10">
-        <Link href={`/${locale}`} className="text-lg font-bold tracking-[0.18em] text-accent-strong">
+        <Link href={`/${locale}`} className="text-lg font-bold tracking-[0.18em] text-accent">
           ALGORAS
         </Link>
         <nav className="flex items-center gap-5 text-sm font-medium text-muted">
