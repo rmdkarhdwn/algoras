@@ -78,7 +78,7 @@ export function BubbleSortVisualizer({ step }: Props) {
                 width={barW}
                 height={barH}
                 rx={5}
-                animate={{ fill: color, y, height: barH }}
+                animate={{ fill: color }}
                 transition={{ duration: 0.22 }}
                 style={{ filter: barGlow(i, step) }}
               />
@@ -90,7 +90,7 @@ export function BubbleSortVisualizer({ step }: Props) {
                 textAnchor="middle"
                 fontSize={11}
                 fontWeight={700}
-                animate={{ fill: color, y: Math.max(PAD_TOP - 6, y - 6) }}
+                animate={{ fill: color }}
                 transition={{ duration: 0.22 }}
               >
                 {value}
