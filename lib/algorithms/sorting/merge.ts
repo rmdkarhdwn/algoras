@@ -1,54 +1,46 @@
 import type { AlgorithmStep } from "@/lib/algorithms/types";
 
-export function createMergeSortSteps(input: number[]): AlgorithmStep[] {
-  const values = [...input];
-  const steps: AlgorithmStep[] = [
-    { values: [...values], description: "Initial state" },
-  ];
+export function generateMergeSortSteps(input: number[]): AlgorithmStep[] {
+  const arr = [...input];
+  const steps: AlgorithmStep[] = [];
+
+  steps.push({ array: [...arr], comparing: [], swapping: [], sorted: [], description: "정렬 시작." });
 
   function mergeSort(start: number, end: number) {
-    if (end - start <= 1) {
-      return;
-    }
+    if (end - start <= 1) return;
 
-    const middle = Math.floor((start + end) / 2);
-    mergeSort(start, middle);
-    mergeSort(middle, end);
+    const mid = Math.floor((start + end) / 2);
+    mergeSort(start, mid);
+    mergeSort(mid, end);
 
-    const left = values.slice(start, middle);
-    const right = values.slice(middle, end);
-    let leftIndex = 0;
-    let rightIndex = 0;
-    let targetIndex = start;
+    const left = arr.slice(start, mid);
+    const right = arr.slice(mid, end);
+    let li = 0, ri = 0, ti = start;
 
-    while (leftIndex < left.length || rightIndex < right.length) {
-      const leftValue = left[leftIndex];
-      const rightValue = right[rightIndex];
+    while (li < left.length || ri < right.length) {
+      const takeLeft =
+        ri >= right.length || (li < left.length && left[li] <= right[ri]);
 
-      if (rightIndex >= right.length || (leftIndex < left.length && leftValue <= rightValue)) {
-        values[targetIndex] = leftValue;
-        leftIndex += 1;
-      } else {
-        values[targetIndex] = rightValue;
-        rightIndex += 1;
-      }
-
+      arr[ti] = takeLeft ? left[li++] : right[ri++];
       steps.push({
-        values: [...values],
-        swapping: [targetIndex],
-        description: `Merge values into index ${targetIndex}`,
+        array: [...arr],
+        comparing: [],
+        swapping: [ti],
+        sorted: [],
+        description: `인덱스 ${ti} 에 ${arr[ti]} 병합`,
       });
-
-      targetIndex += 1;
+      ti++;
     }
   }
 
-  mergeSort(0, values.length);
+  mergeSort(0, arr.length);
 
   steps.push({
-    values: [...values],
-    sorted: values.map((_, index) => index),
-    description: "Sorted result",
+    array: [...arr],
+    comparing: [],
+    swapping: [],
+    sorted: arr.map((_, i) => i),
+    description: "정렬 완료!",
   });
 
   return steps;

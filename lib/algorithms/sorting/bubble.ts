@@ -1,34 +1,58 @@
 import type { AlgorithmStep } from "@/lib/algorithms/types";
 
-export function createBubbleSortSteps(input: number[]): AlgorithmStep[] {
-  const values = [...input];
-  const steps: AlgorithmStep[] = [
-    { values: [...values], description: "Initial state" },
-  ];
+export function generateBubbleSortSteps(input: number[]): AlgorithmStep[] {
+  const arr = [...input];
+  const steps: AlgorithmStep[] = [];
+  const sorted: number[] = [];
+  const n = arr.length;
 
-  for (let end = values.length - 1; end > 0; end -= 1) {
-    for (let index = 0; index < end; index += 1) {
+  steps.push({
+    array: [...arr],
+    comparing: [],
+    swapping: [],
+    sorted: [],
+    description: "정렬 시작. 인접한 두 원소를 비교합니다.",
+  });
+
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
       steps.push({
-        values: [...values],
-        comparing: [index, index + 1],
-        description: `Compare index ${index} and ${index + 1}`,
+        array: [...arr],
+        comparing: [j, j + 1],
+        swapping: [],
+        sorted: [...sorted],
+        description: `arr[${j}]=${arr[j]}와 arr[${j + 1}]=${arr[j + 1]} 비교`,
       });
 
-      if (values[index] > values[index + 1]) {
-        [values[index], values[index + 1]] = [values[index + 1], values[index]];
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
         steps.push({
-          values: [...values],
-          swapping: [index, index + 1],
-          description: `Swap ${index} and ${index + 1}`,
+          array: [...arr],
+          comparing: [],
+          swapping: [j, j + 1],
+          sorted: [...sorted],
+          description: `arr[${j}]와 arr[${j + 1}] 교환 → [${arr[j]}, ${arr[j + 1]}]`,
         });
       }
     }
+
+    sorted.unshift(n - 1 - i);
+    steps.push({
+      array: [...arr],
+      comparing: [],
+      swapping: [],
+      sorted: [...sorted],
+      description: `패스 ${i + 1} 완료. ${arr[n - 1 - i]}이(가) 제자리에 놓였습니다.`,
+    });
   }
 
+  sorted.unshift(0);
   steps.push({
-    values: [...values],
-    sorted: values.map((_, index) => index),
-    description: "Sorted result",
+    array: [...arr],
+    comparing: [],
+    swapping: [],
+    sorted: [...sorted],
+    description: "정렬 완료!",
   });
 
   return steps;
