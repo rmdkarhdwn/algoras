@@ -118,6 +118,7 @@ Visualizer 컴포넌트는 steps 배열을 받아 currentStep 인덱스만 변�
 
 Git 명령어는 직접 실행하지 않는다.
 작업 완료 후 아래 형식으로 커밋 가이드를 제시한다.
+경로에 대괄호가 포함된 경우 (예: app/[locale]/...) 반드시 따옴표로 감싼다.
 git add <수정된 파일 목록>
 git commit -m "<추천 커밋 메세지>"
 

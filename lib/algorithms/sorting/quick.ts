@@ -1,54 +1,67 @@
 import type { AlgorithmStep } from "@/lib/algorithms/types";
 
-export function createQuickSortSteps(input: number[]): AlgorithmStep[] {
-  const values = [...input];
-  const steps: AlgorithmStep[] = [
-    { values: [...values], description: "Initial state" },
-  ];
+export function generateQuickSortSteps(input: number[]): AlgorithmStep[] {
+  const arr = [...input];
+  const steps: AlgorithmStep[] = [];
+  const sorted: number[] = [];
+
+  steps.push({ array: [...arr], comparing: [], swapping: [], sorted: [], description: "정렬 시작." });
 
   function quickSort(low: number, high: number) {
-    if (low >= high) {
-      return;
-    }
+    if (low >= high) return;
 
-    const pivot = values[high];
-    let partitionIndex = low;
+    const pivot = arr[high];
+    let p = low;
 
-    for (let index = low; index < high; index += 1) {
+    for (let i = low; i < high; i++) {
       steps.push({
-        values: [...values],
-        comparing: [index, high],
-        description: `Compare index ${index} with pivot ${pivot}`,
+        array: [...arr],
+        comparing: [i, high],
+        swapping: [],
+        sorted: [...sorted],
+        pivot: high,
+        description: `arr[${i}]=${arr[i]} 와 pivot=${pivot} 비교`,
       });
 
-      if (values[index] <= pivot) {
-        [values[index], values[partitionIndex]] = [values[partitionIndex], values[index]];
-        steps.push({
-          values: [...values],
-          swapping: [index, partitionIndex],
-          description: `Move value below pivot to index ${partitionIndex}`,
-        });
-        partitionIndex += 1;
+      if (arr[i] <= pivot) {
+        [arr[i], arr[p]] = [arr[p], arr[i]];
+        if (i !== p) {
+          steps.push({
+            array: [...arr],
+            comparing: [],
+            swapping: [i, p],
+            sorted: [...sorted],
+            pivot: high,
+            description: `arr[${i}] 와 arr[${p}] 교환`,
+          });
+        }
+        p++;
       }
     }
 
-    [values[partitionIndex], values[high]] = [values[high], values[partitionIndex]];
+    [arr[p], arr[high]] = [arr[high], arr[p]];
+    sorted.push(p);
     steps.push({
-      values: [...values],
-      swapping: [partitionIndex, high],
-      description: `Place pivot at index ${partitionIndex}`,
+      array: [...arr],
+      comparing: [],
+      swapping: [p, high],
+      sorted: [...sorted],
+      pivot: p,
+      description: `pivot ${arr[p]} 을 인덱스 ${p} 에 배치`,
     });
 
-    quickSort(low, partitionIndex - 1);
-    quickSort(partitionIndex + 1, high);
+    quickSort(low, p - 1);
+    quickSort(p + 1, high);
   }
 
-  quickSort(0, values.length - 1);
+  quickSort(0, arr.length - 1);
 
   steps.push({
-    values: [...values],
-    sorted: values.map((_, index) => index),
-    description: "Sorted result",
+    array: [...arr],
+    comparing: [],
+    swapping: [],
+    sorted: arr.map((_, i) => i),
+    description: "정렬 완료!",
   });
 
   return steps;

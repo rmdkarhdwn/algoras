@@ -1,8 +1,9 @@
 export type AlgorithmStep = {
-  values: number[];
-  comparing?: number[];
-  swapping?: number[];
-  sorted?: number[];
+  array: number[];
+  comparing: number[];
+  swapping: number[];
+  sorted: number[];
+  pivot?: number;
   description: string;
 };
 

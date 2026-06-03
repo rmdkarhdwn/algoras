@@ -1,40 +1,53 @@
 import type { AlgorithmStep } from "@/lib/algorithms/types";
 
-export function createSelectionSortSteps(input: number[]): AlgorithmStep[] {
-  const values = [...input];
-  const steps: AlgorithmStep[] = [
-    { values: [...values], description: "Initial state" },
-  ];
+export function generateSelectionSortSteps(input: number[]): AlgorithmStep[] {
+  const arr = [...input];
+  const steps: AlgorithmStep[] = [];
+  const sorted: number[] = [];
 
-  for (let start = 0; start < values.length; start += 1) {
-    let minIndex = start;
+  steps.push({ array: [...arr], comparing: [], swapping: [], sorted: [], description: "정렬 시작." });
 
-    for (let index = start + 1; index < values.length; index += 1) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    let minIdx = i;
+
+    for (let j = i + 1; j < arr.length; j++) {
       steps.push({
-        values: [...values],
-        comparing: [minIndex, index],
-        description: `Find minimum from index ${start}`,
+        array: [...arr],
+        comparing: [minIdx, j],
+        swapping: [],
+        sorted: [...sorted],
+        description: `arr[${j}]=${arr[j]} 와 현재 최솟값 arr[${minIdx}]=${arr[minIdx]} 비교`,
       });
-
-      if (values[index] < values[minIndex]) {
-        minIndex = index;
-      }
+      if (arr[j] < arr[minIdx]) minIdx = j;
     }
 
-    if (minIndex !== start) {
-      [values[start], values[minIndex]] = [values[minIndex], values[start]];
+    if (minIdx !== i) {
+      [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
       steps.push({
-        values: [...values],
-        swapping: [start, minIndex],
-        description: `Place the next minimum at index ${start}`,
+        array: [...arr],
+        comparing: [],
+        swapping: [i, minIdx],
+        sorted: [...sorted],
+        description: `arr[${i}] 와 arr[${minIdx}] 교환`,
       });
     }
+
+    sorted.push(i);
+    steps.push({
+      array: [...arr],
+      comparing: [],
+      swapping: [],
+      sorted: [...sorted],
+      description: `인덱스 ${i} 확정`,
+    });
   }
 
   steps.push({
-    values: [...values],
-    sorted: values.map((_, index) => index),
-    description: "Sorted result",
+    array: [...arr],
+    comparing: [],
+    swapping: [],
+    sorted: arr.map((_, i) => i),
+    description: "정렬 완료!",
   });
 
   return steps;

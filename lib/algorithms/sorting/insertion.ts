@@ -1,37 +1,53 @@
 import type { AlgorithmStep } from "@/lib/algorithms/types";
 
-export function createInsertionSortSteps(input: number[]): AlgorithmStep[] {
-  const values = [...input];
-  const steps: AlgorithmStep[] = [
-    { values: [...values], description: "Initial state" },
-  ];
+export function generateInsertionSortSteps(input: number[]): AlgorithmStep[] {
+  const arr = [...input];
+  const steps: AlgorithmStep[] = [];
+  const sorted: number[] = [];
 
-  for (let index = 1; index < values.length; index += 1) {
-    const current = values[index];
-    let position = index - 1;
+  steps.push({ array: [...arr], comparing: [], swapping: [], sorted: [], description: "정렬 시작." });
 
-    while (position >= 0 && values[position] > current) {
-      values[position + 1] = values[position];
+  for (let i = 1; i < arr.length; i++) {
+    const key = arr[i];
+    let j = i - 1;
+
+    steps.push({
+      array: [...arr],
+      comparing: [i],
+      swapping: [],
+      sorted: [...sorted],
+      description: `arr[${i}]=${key} 를 삽입 위치 탐색`,
+    });
+
+    while (j >= 0 && arr[j] > key) {
+      arr[j + 1] = arr[j];
       steps.push({
-        values: [...values],
-        comparing: [position, position + 1],
-        description: `Shift value at index ${position}`,
+        array: [...arr],
+        comparing: [],
+        swapping: [j, j + 1],
+        sorted: [...sorted],
+        description: `arr[${j}]=${arr[j]} 을 오른쪽으로 이동`,
       });
-      position -= 1;
+      j--;
     }
 
-    values[position + 1] = current;
+    arr[j + 1] = key;
+    sorted.push(j + 1);
     steps.push({
-      values: [...values],
-      swapping: [position + 1, index],
-      description: `Insert ${current} at index ${position + 1}`,
+      array: [...arr],
+      comparing: [],
+      swapping: [],
+      sorted: [...sorted],
+      description: `${key} 를 인덱스 ${j + 1} 에 삽입`,
     });
   }
 
   steps.push({
-    values: [...values],
-    sorted: values.map((_, index) => index),
-    description: "Sorted result",
+    array: [...arr],
+    comparing: [],
+    swapping: [],
+    sorted: arr.map((_, i) => i),
+    description: "정렬 완료!",
   });
 
   return steps;
