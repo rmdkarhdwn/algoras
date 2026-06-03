@@ -7,8 +7,8 @@
   "home": {
     "badge": "Algorithm Atlas",
     "kicker": "Interactive Learning Platform",
-    "title": "A visual learning space for algorithms and data structures",
-    "description": "This starter structure is designed to pair step-by-step execution, code examples, and complexity notes in one place.",
+    "title": "Understand Algorithms Visually",
+    "description": "Step through each algorithm, compare code side by side, and build intuition for complexity — all in one interactive space.",
     "primaryCta": "Browse algorithms",
     "secondaryCta": "Explore data structures",
     "sideLabel": "Starter Metrics",

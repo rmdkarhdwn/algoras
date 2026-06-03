@@ -7,8 +7,8 @@
   "home": {
     "badge": "Algorithm Atlas",
     "kicker": "Interactive Learning Platform",
-    "title": "알고리즘과 자료구조를 시각적으로 이해하는 학습 공간",
-    "description": "알고리즘 동작 과정을 단계별로 따라가고, 코드와 복잡도를 함께 비교하며 이해할 수 있도록 설계한 기본 구조입니다.",
+    "title": "알고리즘을 눈으로 이해하다",
+    "description": "알고리즘 동작 과정을 단계별로 따라가고, 코드와 복잡도를 함께 비교하며 이해할 수 있도록 설계한 인터랙티브 학습 공간입니다.",
     "primaryCta": "알고리즘 둘러보기",
     "secondaryCta": "자료구조 보기",
     "sideLabel": "Starter Metrics",
