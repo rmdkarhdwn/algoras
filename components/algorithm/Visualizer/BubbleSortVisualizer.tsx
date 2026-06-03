@@ -1,126 +1,126 @@
 "use client";
 
 import type { AlgorithmStep } from "@/lib/algorithms/types";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   step: AlgorithmStep;
 };
 
-const BAR_WIDTH = 36;
-const BAR_GAP = 10;
-const MAX_HEIGHT = 220;
-const SVG_PADDING_X = 24;
-const SVG_PADDING_TOP = 16;
-const SVG_PADDING_BOTTOM = 48;
+const MAX_BAR_H = 200;
+const PAD_X = 24;
+const PAD_TOP = 32;   // enough room for value labels
+const PAD_BOTTOM = 44;
+const SVG_H = MAX_BAR_H + PAD_TOP + PAD_BOTTOM;
 
-function barColor(index: number, step: AlgorithmStep): string {
-  if (step.sorted.includes(index)) return "#22c55e";   // green
-  if (step.swapping.includes(index)) return "#ef4444";  // red
-  if (step.comparing.includes(index)) return "#eab308"; // yellow
-  return "#D4AF37";                                      // gold default
+function barColor(i: number, step: AlgorithmStep) {
+  if (step.sorted.includes(i)) return "#22c55e";
+  if (step.swapping.includes(i)) return "#ef4444";
+  if (step.comparing.includes(i)) return "#eab308";
+  return "#D4AF37";
 }
 
-function barLabel(index: number, step: AlgorithmStep): string {
-  if (step.sorted.includes(index)) return "sorted";
-  if (step.swapping.includes(index)) return "swap";
-  if (step.comparing.includes(index)) return "cmp";
+function barGlow(i: number, step: AlgorithmStep) {
+  if (step.swapping.includes(i)) return "drop-shadow(0 0 8px rgba(239,68,68,0.7))";
+  if (step.comparing.includes(i)) return "drop-shadow(0 0 8px rgba(234,179,8,0.6))";
+  if (step.sorted.includes(i)) return "drop-shadow(0 0 6px rgba(34,197,94,0.35))";
+  return "none";
+}
+
+function stateLabel(i: number, step: AlgorithmStep) {
+  if (step.sorted.includes(i)) return "done";
+  if (step.swapping.includes(i)) return "swap";
+  if (step.comparing.includes(i)) return "cmp";
   return "";
 }
 
 export function BubbleSortVisualizer({ step }: Props) {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [svgWidth, setSvgWidth] = useState(480);
+
+  useEffect(() => {
+    const el = svgRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([e]) => setSvgWidth(e.contentRect.width));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   const { array } = step;
-  const max = Math.max(...array);
   const n = array.length;
-  const svgWidth = n * (BAR_WIDTH + BAR_GAP) - BAR_GAP + SVG_PADDING_X * 2;
-  const svgHeight = MAX_HEIGHT + SVG_PADDING_TOP + SVG_PADDING_BOTTOM;
+  const max = Math.max(...array);
+  const usable = svgWidth - PAD_X * 2;
+  const slot = usable / n;
+  const barW = Math.max(8, Math.min(44, slot * 0.62));
 
   return (
     <div className="flex flex-col gap-4">
       <svg
+        ref={svgRef}
         width="100%"
-        viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-        className="overflow-visible"
+        height={SVG_H}
         aria-label="Bubble sort visualization"
       >
-        <AnimatePresence initial={false}>
-          {array.map((value, i) => {
-            const barH = Math.max(8, (value / max) * MAX_HEIGHT);
-            const x = SVG_PADDING_X + i * (BAR_WIDTH + BAR_GAP);
-            const y = SVG_PADDING_TOP + MAX_HEIGHT - barH;
-            const color = barColor(i, step);
-            const label = barLabel(i, step);
+        {array.map((value, i) => {
+          const barH = Math.max(6, (value / max) * MAX_BAR_H);
+          const x = PAD_X + slot * i + (slot - barW) / 2;
+          const y = PAD_TOP + MAX_BAR_H - barH;
+          const color = barColor(i, step);
+          const label = stateLabel(i, step);
 
-            return (
-              <motion.g
-                key={`bar-${i}`}
-                layout
-                layoutId={`bar-${value}-${i}`}
-                initial={false}
-                animate={{ x: 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          return (
+            <g key={i}>
+              {/* Bar */}
+              <motion.rect
+                x={x}
+                y={y}
+                width={barW}
+                height={barH}
+                rx={5}
+                animate={{ fill: color, y, height: barH }}
+                transition={{ duration: 0.22 }}
+                style={{ filter: barGlow(i, step) }}
+              />
+
+              {/* Value label above bar */}
+              <motion.text
+                x={x + barW / 2}
+                y={Math.max(PAD_TOP - 6, y - 6)}
+                textAnchor="middle"
+                fontSize={11}
+                fontWeight={700}
+                animate={{ fill: color, y: Math.max(PAD_TOP - 6, y - 6) }}
+                transition={{ duration: 0.22 }}
               >
-                {/* Bar */}
-                <motion.rect
-                  x={x}
-                  y={y}
-                  width={BAR_WIDTH}
-                  height={barH}
-                  rx={6}
-                  fill={color}
-                  animate={{ fill: color, y, height: barH }}
-                  transition={{ duration: 0.25 }}
-                  style={{
-                    filter: step.swapping.includes(i)
-                      ? "drop-shadow(0 0 8px rgba(239,68,68,0.7))"
-                      : step.comparing.includes(i)
-                      ? "drop-shadow(0 0 8px rgba(234,179,8,0.6))"
-                      : step.sorted.includes(i)
-                      ? "drop-shadow(0 0 6px rgba(34,197,94,0.4))"
-                      : "none",
-                  }}
-                />
+                {value}
+              </motion.text>
 
-                {/* Value label above bar */}
-                <motion.text
-                  x={x + BAR_WIDTH / 2}
-                  y={y - 6}
+              {/* State label below baseline */}
+              {label && (
+                <text
+                  x={x + barW / 2}
+                  y={PAD_TOP + MAX_BAR_H + 18}
                   textAnchor="middle"
-                  fontSize={11}
-                  fontWeight={600}
+                  fontSize={9}
+                  fontWeight={700}
                   fill={color}
-                  animate={{ y: y - 6 }}
-                  transition={{ duration: 0.25 }}
+                  style={{ textTransform: "uppercase", letterSpacing: "0.06em" }}
                 >
-                  {value}
-                </motion.text>
-
-                {/* State label below bar */}
-                {label && (
-                  <text
-                    x={x + BAR_WIDTH / 2}
-                    y={SVG_PADDING_TOP + MAX_HEIGHT + 18}
-                    textAnchor="middle"
-                    fontSize={9}
-                    fontWeight={700}
-                    fill={color}
-                    style={{ textTransform: "uppercase", letterSpacing: "0.05em" }}
-                  >
-                    {label}
-                  </text>
-                )}
-              </motion.g>
-            );
-          })}
-        </AnimatePresence>
+                  {label}
+                </text>
+              )}
+            </g>
+          );
+        })}
 
         {/* Baseline */}
         <line
-          x1={SVG_PADDING_X}
-          y1={SVG_PADDING_TOP + MAX_HEIGHT}
-          x2={svgWidth - SVG_PADDING_X}
-          y2={SVG_PADDING_TOP + MAX_HEIGHT}
-          stroke="rgba(245,245,245,0.12)"
+          x1={PAD_X}
+          y1={PAD_TOP + MAX_BAR_H}
+          x2={svgWidth - PAD_X}
+          y2={PAD_TOP + MAX_BAR_H}
+          stroke="rgba(245,245,245,0.1)"
           strokeWidth={1}
         />
       </svg>
@@ -128,7 +128,7 @@ export function BubbleSortVisualizer({ step }: Props) {
       {/* Step description */}
       <p
         className="min-h-[1.5rem] text-center text-sm"
-        style={{ color: "rgba(245,245,245,0.55)" }}
+        style={{ color: "rgba(245,245,245,0.5)" }}
       >
         {step.description}
       </p>
