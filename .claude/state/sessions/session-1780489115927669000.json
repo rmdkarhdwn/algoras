@@ -1,0 +1,42 @@
+{
+  "changes_this_session": [],
+  "cwd": "/Users/oneriver/coding/project/algoras",
+  "duration_minutes": 1,
+  "ended_at": "2026-06-03T12:19:41Z",
+  "event_seq": 8,
+  "fork_count": 0,
+  "git": {
+    "branch": "feature/phase-2-viz-engine-bubble-sort",
+    "last_commit": "d8d0dc8",
+    "uncommitted_changes": 0
+  },
+  "harness_mem": {
+    "healthy": true,
+    "last_checked": "2026-06-03T12:18:35Z",
+    "last_error": ""
+  },
+  "intent": "literal",
+  "last_event_id": "event-000008",
+  "memory_logged": true,
+  "orchestration": {
+    "max_state_retries": 3,
+    "retry_backoff_seconds": 10
+  },
+  "parent_session_id": null,
+  "plans": {
+    "completed_tasks": 0,
+    "exists": false,
+    "last_modified": 0,
+    "pending_tasks": 0,
+    "todo_tasks": 0,
+    "wip_tasks": 0
+  },
+  "project_name": "algoras",
+  "prompt_seq": 2,
+  "resume_token": "resume-1780489115927682000",
+  "session_id": "session-1780489115927669000",
+  "started_at": "2026-06-03T12:18:35Z",
+  "state": "stopped",
+  "state_version": 1,
+  "updated_at": "2026-06-03T12:19:36Z"
+}
