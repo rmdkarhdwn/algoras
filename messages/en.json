@@ -1,0 +1,35 @@
+{
+  "navigation": {
+    "home": "Home",
+    "algorithms": "Algorithms",
+    "dataStructures": "Data Structures"
+  },
+  "home": {
+    "badge": "Algorithm Atlas",
+    "kicker": "Interactive Learning Platform",
+    "title": "A visual learning space for algorithms and data structures",
+    "description": "This starter structure is designed to pair step-by-step execution, code examples, and complexity notes in one place.",
+    "primaryCta": "Browse algorithms",
+    "secondaryCta": "Explore data structures",
+    "sideLabel": "Starter Metrics",
+    "highlights": [
+      { "title": "Algorithms", "value": "3 ready" },
+      { "title": "Data Structures", "value": "2 mapped" },
+      { "title": "Locale Routes", "value": "ko / en" }
+    ],
+    "sections": [
+      {
+        "title": "Visualizer Core",
+        "description": "A dedicated slot for SVG or Canvas-based visualization components."
+      },
+      {
+        "title": "Code Viewer",
+        "description": "A separated code sample area that can later be upgraded with Shiki highlighting."
+      },
+      {
+        "title": "State Store",
+        "description": "A Zustand-ready foundation for playback, pause, and speed controls."
+      }
+    ]
+  }
+}

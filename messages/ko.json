@@ -1,0 +1,35 @@
+{
+  "navigation": {
+    "home": "홈",
+    "algorithms": "알고리즘",
+    "dataStructures": "자료구조"
+  },
+  "home": {
+    "badge": "Algorithm Atlas",
+    "kicker": "Interactive Learning Platform",
+    "title": "알고리즘과 자료구조를 시각적으로 이해하는 학습 공간",
+    "description": "알고리즘 동작 과정을 단계별로 따라가고, 코드와 복잡도를 함께 비교하며 이해할 수 있도록 설계한 기본 구조입니다.",
+    "primaryCta": "알고리즘 둘러보기",
+    "secondaryCta": "자료구조 보기",
+    "sideLabel": "Starter Metrics",
+    "highlights": [
+      { "title": "Algorithms", "value": "3 ready" },
+      { "title": "Data Structures", "value": "2 mapped" },
+      { "title": "Locale Routes", "value": "ko / en" }
+    ],
+    "sections": [
+      {
+        "title": "Visualizer Core",
+        "description": "SVG 또는 Canvas 기반 시각화를 연결하기 좋은 전용 컴포넌트 자리를 마련했습니다."
+      },
+      {
+        "title": "Code Viewer",
+        "description": "Shiki 같은 하이라이터를 붙일 수 있도록 코드 예제 슬롯을 분리했습니다."
+      },
+      {
+        "title": "State Store",
+        "description": "재생, 정지, 속도 변경을 Zustand 스토어로 이어갈 수 있는 구조입니다."
+      }
+    ]
+  }
+}

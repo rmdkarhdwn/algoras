@@ -1,0 +1,65 @@
+[
+  {
+    "slug": "bubble-sort",
+    "name": "Bubble Sort",
+    "category": "sorting",
+    "difficulty": "Easy",
+    "sampleInput": [62, 24, 45, 18, 91, 33, 57],
+    "description": {
+      "ko": "인접한 두 원소를 반복해서 비교하고 필요한 경우 자리를 바꾸며 큰 값이 뒤로 밀려나도록 정렬하는 방식입니다.",
+      "en": "A repeated adjacent-swap strategy that bubbles larger values toward the end of the list."
+    },
+    "complexity": {
+      "best": "O(n)",
+      "average": "O(n^2)",
+      "worst": "O(n^2)",
+      "space": "O(1)"
+    },
+    "codeExamples": {
+      "typescript": "export function bubbleSort(values: number[]) {\n  const copy = [...values];\n\n  for (let end = copy.length - 1; end > 0; end -= 1) {\n    for (let index = 0; index < end; index += 1) {\n      if (copy[index] > copy[index + 1]) {\n        [copy[index], copy[index + 1]] = [copy[index + 1], copy[index]];\n      }\n    }\n  }\n\n  return copy;\n}",
+      "python": "def bubble_sort(values):\n    copy = list(values)\n    for end in range(len(copy) - 1, 0, -1):\n        for index in range(end):\n            if copy[index] > copy[index + 1]:\n                copy[index], copy[index + 1] = copy[index + 1], copy[index]\n    return copy"
+    }
+  },
+  {
+    "slug": "selection-sort",
+    "name": "Selection Sort",
+    "category": "sorting",
+    "difficulty": "Easy",
+    "sampleInput": [14, 73, 29, 10, 84, 51, 32],
+    "description": {
+      "ko": "남아 있는 구간에서 가장 작은 값을 골라 맨 앞에 배치하는 과정을 반복하는 직관적인 정렬입니다.",
+      "en": "A straightforward algorithm that repeatedly selects the smallest remaining value and places it at the front."
+    },
+    "complexity": {
+      "best": "O(n^2)",
+      "average": "O(n^2)",
+      "worst": "O(n^2)",
+      "space": "O(1)"
+    },
+    "codeExamples": {
+      "typescript": "export function selectionSort(values: number[]) {\n  const copy = [...values];\n\n  for (let start = 0; start < copy.length; start += 1) {\n    let minIndex = start;\n\n    for (let index = start + 1; index < copy.length; index += 1) {\n      if (copy[index] < copy[minIndex]) {\n        minIndex = index;\n      }\n    }\n\n    [copy[start], copy[minIndex]] = [copy[minIndex], copy[start]];\n  }\n\n  return copy;\n}",
+      "python": "def selection_sort(values):\n    copy = list(values)\n    for start in range(len(copy)):\n        min_index = start\n        for index in range(start + 1, len(copy)):\n            if copy[index] < copy[min_index]:\n                min_index = index\n        copy[start], copy[min_index] = copy[min_index], copy[start]\n    return copy"
+    }
+  },
+  {
+    "slug": "quick-sort",
+    "name": "Quick Sort",
+    "category": "sorting",
+    "difficulty": "Medium",
+    "sampleInput": [49, 12, 88, 37, 64, 21, 73],
+    "description": {
+      "ko": "피벗을 기준으로 작은 값과 큰 값을 분할한 뒤 부분 배열을 재귀적으로 정렬하는 분할 정복 알고리즘입니다.",
+      "en": "A divide-and-conquer approach that partitions the array around a pivot and recursively sorts each side."
+    },
+    "complexity": {
+      "best": "O(n log n)",
+      "average": "O(n log n)",
+      "worst": "O(n^2)",
+      "space": "O(log n)"
+    },
+    "codeExamples": {
+      "typescript": "export function quickSort(values: number[]): number[] {\n  if (values.length <= 1) {\n    return values;\n  }\n\n  const [pivot, ...rest] = values;\n  const smaller = rest.filter((value) => value <= pivot);\n  const larger = rest.filter((value) => value > pivot);\n\n  return [...quickSort(smaller), pivot, ...quickSort(larger)];\n}",
+      "python": "def quick_sort(values):\n    if len(values) <= 1:\n        return values\n    pivot, *rest = values\n    smaller = [value for value in rest if value <= pivot]\n    larger = [value for value in rest if value > pivot]\n    return [*quick_sort(smaller), pivot, *quick_sort(larger)]"
+    }
+  }
+]

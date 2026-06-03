@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "array",
+    "name": "Array",
+    "category": "linear",
+    "description": {
+      "ko": "연속된 메모리 공간에 값을 저장해 인덱스로 빠르게 접근할 수 있는 가장 기본적인 자료구조입니다.",
+      "en": "The foundational contiguous structure that offers fast indexed access to stored values."
+    },
+    "primaryUseCase": {
+      "ko": "랜덤 접근이 중요할 때",
+      "en": "When constant-time indexed access matters"
+    },
+    "useCases": {
+      "ko": ["순회 중심 데이터 처리", "슬라이딩 윈도우 문제", "정렬과 탐색의 기본 입력"],
+      "en": ["Traversal-heavy data processing", "Sliding window problems", "Default input for sorting and search"]
+    },
+    "complexity": {
+      "access": "O(1)",
+      "search": "O(n)",
+      "insertion": "O(n)",
+      "deletion": "O(n)"
+    },
+    "codeExamples": {
+      "typescript": "const values = [8, 13, 21];\nconst second = values[1];\nvalues.splice(1, 0, 34);\n",
+      "python": "values = [8, 13, 21]\nsecond = values[1]\nvalues.insert(1, 34)\n"
+    }
+  },
+  {
+    "slug": "queue",
+    "name": "Queue",
+    "category": "linear",
+    "description": {
+      "ko": "먼저 들어온 값이 먼저 나가는 FIFO 구조로, 작업 대기열과 너비 우선 탐색 같은 흐름에 잘 맞습니다.",
+      "en": "A FIFO structure that fits natural processing pipelines such as task scheduling and breadth-first traversal."
+    },
+    "primaryUseCase": {
+      "ko": "도착 순서를 유지해야 할 때",
+      "en": "When arrival order must be preserved"
+    },
+    "useCases": {
+      "ko": ["BFS 탐색", "작업 스케줄링", "비동기 이벤트 버퍼"],
+      "en": ["Breadth-first search", "Job scheduling", "Asynchronous event buffering"]
+    },
+    "complexity": {
+      "access": "O(n)",
+      "search": "O(n)",
+      "insertion": "O(1)",
+      "deletion": "O(1)"
+    },
+    "codeExamples": {
+      "typescript": "const queue: number[] = [];\nqueue.push(10);\nqueue.push(20);\nconst next = queue.shift();\n",
+      "python": "from collections import deque\nqueue = deque()\nqueue.append(10)\nqueue.append(20)\nnext_item = queue.popleft()\n"
+    }
+  }
+]
