@@ -45,13 +45,13 @@ export default async function LocaleHomePage({
             <div className="flex flex-wrap gap-3">
               <Link
                 href={`/${locale}/algorithms`}
-                className="rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+                className="rounded-full bg-accent px-5 py-3 text-sm font-semibold text-background transition hover:opacity-90"
               >
                 {dictionary.home.primaryCta}
               </Link>
               <Link
                 href={`/${locale}/data-structures`}
-                className="rounded-full border border-border bg-white/70 px-5 py-3 text-sm font-semibold text-foreground transition hover:border-accent"
+                className="rounded-full border border-border bg-surface px-5 py-3 text-sm font-semibold text-foreground transition hover:border-accent"
               >
                 {dictionary.home.secondaryCta}
               </Link>

@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f1e8;
-  --foreground: #18222f;
-  --surface: rgba(255, 255, 255, 0.74);
-  --surface-strong: #fffaf0;
-  --border: rgba(24, 34, 47, 0.12);
-  --accent: #d86f45;
-  --accent-strong: #184e77;
-  --muted: #5b6572;
+  --background: #0B0B0B;
+  --foreground: #F5F5F5;
+  --surface: #141414;
+  --surface-strong: #1C1C1C;
+  --border: rgba(245, 245, 245, 0.1);
+  --accent: #D4AF37;
+  --accent-strong: #E8C547;
+  --muted: #8A8F98;
 }
 
 @theme inline {
@@ -30,8 +30,8 @@
 
 html {
   background:
-    radial-gradient(circle at top, rgba(216, 111, 69, 0.22), transparent 28%),
-    linear-gradient(180deg, #fff8ee 0%, #f5f1e8 100%);
+    radial-gradient(circle at top right, rgba(212, 175, 55, 0.08), transparent 40%),
+    #0B0B0B;
   color: var(--foreground);
 }
 
