@@ -19,16 +19,16 @@
     ],
     "sections": [
       {
-        "title": "Visualizer Core",
-        "description": "SVG 또는 Canvas 기반 시각화를 연결하기 좋은 전용 컴포넌트 자리를 마련했습니다."
+        "title": "정렬 알고리즘",
+        "description": "단계별 시각화로 Bubble, Quick, Merge Sort 이해하기"
       },
       {
-        "title": "Code Viewer",
-        "description": "Shiki 같은 하이라이터를 붙일 수 있도록 코드 예제 슬롯을 분리했습니다."
+        "title": "자료구조",
+        "description": "Array, Stack, Queue를 직접 조작하며 학습"
       },
       {
-        "title": "State Store",
-        "description": "재생, 정지, 속도 변경을 Zustand 스토어로 이어갈 수 있는 구조입니다."
+        "title": "복잡도 비교",
+        "description": "알고리즘별 시간/공간 복잡도를 한눈에 비교"
       }
     ]
   }

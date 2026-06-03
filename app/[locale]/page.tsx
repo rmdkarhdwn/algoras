@@ -33,7 +33,6 @@ export default async function LocaleHomePage({
           heading={dictionary.home.title}
           description={dictionary.home.description}
           primaryCta={dictionary.home.primaryCta}
-          badge={dictionary.home.badge}
         />
       </div>
 

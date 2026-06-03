@@ -8,7 +8,6 @@ type HeroSectionProps = {
   heading: string;
   description: string;
   primaryCta: string;
-  badge: string;
 };
 
 // ─── Algorithm-themed floating cards ─────────────────────────────────────────
@@ -134,7 +133,7 @@ type FloatConfig = { amp: number; dur: number; delay?: number };
 function floatMotion({ amp, dur, delay = 0 }: FloatConfig) {
   return {
     initial: { opacity: 0 },
-    animate: { opacity: 1, y: [0, -amp] },
+    animate: { opacity: 1, y: [-amp, amp] },
     transition: {
       opacity: { duration: 0.5, delay },
       y: { duration: dur, repeat: Infinity, repeatType: "mirror" as const, ease: "easeInOut" as const, delay },
@@ -144,7 +143,7 @@ function floatMotion({ amp, dur, delay = 0 }: FloatConfig) {
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
-export function HeroSection({ locale, heading, description, primaryCta, badge }: HeroSectionProps) {
+export function HeroSection({ locale, heading, description, primaryCta }: HeroSectionProps) {
   return (
     <section className="relative overflow-hidden" style={{ minHeight: 640 }}>
       {/* Subtle grid overlay */}
@@ -182,22 +181,6 @@ export function HeroSection({ locale, heading, description, primaryCta, badge }:
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          {/* Badge */}
-          <div
-            className="inline-flex w-fit items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.22em]"
-            style={{
-              border: "1px solid rgba(212,175,55,0.3)",
-              background: "rgba(212,175,55,0.08)",
-              color: "#D4AF37",
-            }}
-          >
-            <span
-              className="h-1.5 w-1.5 rounded-full"
-              style={{ background: "#D4AF37", boxShadow: "0 0 6px #D4AF37" }}
-            />
-            {badge}
-          </div>
-
           {/* Heading */}
           <h1
             className="text-5xl font-bold leading-[1.15] tracking-tight md:text-[3.75rem]"
@@ -239,7 +222,7 @@ export function HeroSection({ locale, heading, description, primaryCta, badge }:
           <motion.div
             className="absolute"
             style={{ top: "6%", right: "12%" }}
-            {...floatMotion({ amp: 12, dur: 4.2, delay: 0.3 })}
+            {...floatMotion({ amp: 8, dur: 4.2, delay: 0.3 })}
           >
             <div style={{ transform: "rotateX(10deg) rotateY(-18deg)" }}>
               <SortBarsCard />
@@ -250,7 +233,7 @@ export function HeroSection({ locale, heading, description, primaryCta, badge }:
           <motion.div
             className="absolute"
             style={{ top: "28%", right: "54%" }}
-            {...floatMotion({ amp: 10, dur: 3.8, delay: 0.7 })}
+            {...floatMotion({ amp: 7, dur: 3.8, delay: 0.7 })}
           >
             <div style={{ transform: "rotateX(-8deg) rotateY(14deg)" }}>
               <GraphNodeCard />
@@ -272,7 +255,7 @@ export function HeroSection({ locale, heading, description, primaryCta, badge }:
           <motion.div
             className="absolute"
             style={{ top: "57%", right: "32%" }}
-            {...floatMotion({ amp: 11, dur: 4.6, delay: 0.4 })}
+            {...floatMotion({ amp: 8, dur: 4.6, delay: 0.4 })}
           >
             <div style={{ transform: "rotateX(-5deg) rotateY(8deg)" }}>
               <PartitionCard />
@@ -283,7 +266,7 @@ export function HeroSection({ locale, heading, description, primaryCta, badge }:
           <motion.div
             className="absolute"
             style={{ top: "74%", right: "9%" }}
-            {...floatMotion({ amp: 14, dur: 3.5, delay: 1.1 })}
+            {...floatMotion({ amp: 7, dur: 3.5, delay: 1.1 })}
           >
             <div style={{ transform: "rotateX(4deg) rotateY(-6deg)" }}>
               <ComplexityCard label="O(n log n)" />
