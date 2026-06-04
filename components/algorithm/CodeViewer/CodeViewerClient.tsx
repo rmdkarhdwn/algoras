@@ -43,9 +43,9 @@ export function CodeViewerClient({ tokensByLang, annotationsByLang, defaultLang 
     if (!annotation || !steps.length) return null;
     const step = steps[currentStep];
     if (!step) return null;
-    if (step.swapping?.length) return annotation.stepLineMap.swapping;
-    if (step.comparing?.length) return annotation.stepLineMap.comparing;
-    if (step.sorted?.length) return annotation.stepLineMap.sorted;
+    if (step.swapping.length) return annotation.stepLineMap.swapping;
+    if (step.comparing.length) return annotation.stepLineMap.comparing;
+    if (step.sorted.length) return annotation.stepLineMap.sorted;
     return annotation.stepLineMap.initial;
   })();
 

@@ -1,8 +1,6 @@
 import algorithms from "@/data/algorithms/algorithms.json";
 import { CodeViewer } from "@/components/algorithm/CodeViewer";
-import { ComplexityTable } from "@/components/algorithm/ComplexityTable";
-import { Controls } from "@/components/algorithm/Controls";
-import { Visualizer } from "@/components/algorithm/Visualizer";
+import { BubbleSortPlayer } from "@/components/algorithm/Visualizer/BubbleSortPlayer";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardContent, CardTitle } from "@/components/ui/Card";
 import { notFound } from "next/navigation";
@@ -36,29 +34,21 @@ export default async function AlgorithmDetailPage({
         </p>
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+      <div className="grid gap-6 xl:grid-cols-2">
         <Card>
-          <CardContent className="space-y-6 p-6">
-            <CardTitle>{locale === "ko" ? "Visualizer" : "Visualizer"}</CardTitle>
-            <Visualizer values={algorithm.sampleInput} />
-            <Controls />
+          <CardContent className="space-y-4 p-6">
+            <CardTitle>Visualizer</CardTitle>
+            <BubbleSortPlayer />
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="space-y-6 p-6">
-            <CardTitle>{locale === "ko" ? "복잡도" : "Complexity"}</CardTitle>
-            <ComplexityTable complexity={algorithm.complexity} />
+          <CardContent className="space-y-4 p-6">
+            <CardTitle>{locale === "ko" ? "코드 예제" : "Code Example"}</CardTitle>
+            <CodeViewer algorithmSlug={algorithm.slug} codeExamples={algorithm.codeExamples} />
           </CardContent>
         </Card>
       </div>
-
-      <Card>
-        <CardContent className="space-y-6 p-6">
-          <CardTitle>{locale === "ko" ? "코드 예제" : "Code Example"}</CardTitle>
-          <CodeViewer algorithmSlug={algorithm.slug} codeExamples={algorithm.codeExamples} />
-        </CardContent>
-      </Card>
     </section>
   );
 }
