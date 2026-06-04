@@ -55,8 +55,8 @@ export default async function AlgorithmDetailPage({
 
       <Card>
         <CardContent className="space-y-6 p-6">
-          <CardTitle>{locale === "ko" ? "TypeScript 예제" : "TypeScript Example"}</CardTitle>
-          <CodeViewer code={algorithm.codeExamples.typescript} language="ts" />
+          <CardTitle>{locale === "ko" ? "코드 예제" : "Code Example"}</CardTitle>
+          <CodeViewer algorithmSlug={algorithm.slug} codeExamples={algorithm.codeExamples} />
         </CardContent>
       </Card>
     </section>

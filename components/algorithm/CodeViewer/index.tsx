@@ -1,18 +1,33 @@
-type CodeViewerProps = {
-  code: string;
-  language?: string;
+import { tokenizeCode } from "@/lib/shiki";
+import { getAnnotation } from "@/data/algorithms/code-annotations";
+import { CodeViewerClient } from "./CodeViewerClient";
+import type { SupportedLang } from "@/lib/shiki";
+
+type Props = {
+  algorithmSlug: string;
+  codeExamples: Record<string, string | undefined>;
 };
 
-export function CodeViewer({ code, language = "ts" }: CodeViewerProps) {
+export async function CodeViewer({ algorithmSlug, codeExamples }: Props) {
+  const langs = (Object.keys(codeExamples) as SupportedLang[]).filter(
+    (l) => codeExamples[l] != null
+  );
+
+  const tokensByLang = Object.fromEntries(
+    await Promise.all(
+      langs.map(async (lang) => [lang, await tokenizeCode(codeExamples[lang]!, lang)])
+    )
+  );
+
+  const annotationsByLang = Object.fromEntries(
+    langs.map((lang) => [lang, getAnnotation(algorithmSlug, lang)])
+  );
+
   return (
-    <div className="overflow-hidden rounded-[1.75rem] border border-border bg-[#1b1f24]">
-      <div className="flex items-center justify-between border-b border-white/10 px-5 py-3 text-xs uppercase tracking-[0.24em] text-white/55">
-        <span>{language}</span>
-        <span>Shiki-ready viewer slot</span>
-      </div>
-      <pre className="overflow-x-auto p-5 text-sm leading-7 text-[#f7f2e8]">
-        <code>{code}</code>
-      </pre>
-    </div>
+    <CodeViewerClient
+      tokensByLang={tokensByLang}
+      annotationsByLang={annotationsByLang}
+      defaultLang={langs[0] ?? "typescript"}
+    />
   );
 }
