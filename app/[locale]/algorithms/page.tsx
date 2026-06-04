@@ -1,7 +1,6 @@
 import algorithms from "@/data/algorithms/algorithms.json";
+import { AlgorithmCatalog } from "@/components/algorithm/AlgorithmCatalog";
 import { Badge } from "@/components/ui/Badge";
-import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/Card";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 const locales = ["ko", "en"] as const;
@@ -20,7 +19,7 @@ export default async function AlgorithmsPage({
   return (
     <section className="space-y-8">
       <div className="space-y-3">
-        <Badge>{locale === "ko" ? "Algorithm Catalog" : "Algorithm Catalog"}</Badge>
+        <Badge>Algorithm Catalog</Badge>
         <h1 className="text-3xl font-bold tracking-tight">
           {locale === "ko" ? "정렬 알고리즘 컬렉션" : "Sorting Algorithm Collection"}
         </h1>
@@ -31,28 +30,7 @@ export default async function AlgorithmsPage({
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        {algorithms.map((algorithm) => (
-          <Card key={algorithm.slug}>
-            <CardContent className="space-y-4 p-6">
-              <div className="flex items-center justify-between gap-4">
-                <CardTitle>{algorithm.name}</CardTitle>
-                <Badge>{algorithm.difficulty}</Badge>
-              </div>
-              <CardDescription>{algorithm.description[locale as "ko" | "en"]}</CardDescription>
-              <div className="flex items-center justify-between text-sm text-muted">
-                <span>{`Best ${algorithm.complexity.best}`}</span>
-                <Link
-                  href={`/${locale}/algorithms/${algorithm.slug}`}
-                  className="font-semibold text-accent-strong"
-                >
-                  {locale === "ko" ? "자세히 보기" : "View details"}
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      <AlgorithmCatalog algorithms={algorithms} locale={locale} />
     </section>
   );
 }
