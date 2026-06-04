@@ -88,9 +88,10 @@ function CtrlBtn({
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export function VisualizerControls() {
-  const { steps, currentStep, isPlaying, speed, play, pause, next, prev, reset, setSpeed } =
+  const { steps, currentStep, status, speed, play, pause, next, prev, reset, setSpeed } =
     useVisualizationStore();
 
+  const isPlaying = status === "playing";
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Auto-advance when playing
@@ -101,7 +102,7 @@ export function VisualizerControls() {
       const ms = 1200 / speed;
       intervalRef.current = setInterval(() => {
         useVisualizationStore.getState().next();
-        if (useVisualizationStore.getState().currentStep >= steps.length - 1) {
+        if (useVisualizationStore.getState().currentStep >= useVisualizationStore.getState().steps.length - 1) {
           clearInterval(intervalRef.current!);
         }
       }, ms);
@@ -110,7 +111,7 @@ export function VisualizerControls() {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [isPlaying, speed, steps.length]);
+  }, [isPlaying, speed]);
 
   const atStart = currentStep === 0;
   const atEnd = currentStep >= steps.length - 1;
