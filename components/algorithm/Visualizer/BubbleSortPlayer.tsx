@@ -61,6 +61,11 @@ export function BubbleSortPlayer() {
         style={{ background: "rgba(20,20,20,0.6)" }}
       >
         <VisualizerControls />
+        {currentStepData?.description && (
+          <p className="mt-5 text-center text-base font-semibold" style={{ color: "rgba(245,245,245,0.75)" }}>
+            {currentStepData.description}
+          </p>
+        )}
       </div>
 
       {/* Custom input */}
