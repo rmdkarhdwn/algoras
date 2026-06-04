@@ -125,13 +125,6 @@ export function BubbleSortVisualizer({ step }: Props) {
         />
       </svg>
 
-      {/* Step description */}
-      <p
-        className="min-h-[1.5rem] text-center text-sm"
-        style={{ color: "rgba(245,245,245,0.5)" }}
-      >
-        {step.description}
-      </p>
     </div>
   );
 }
