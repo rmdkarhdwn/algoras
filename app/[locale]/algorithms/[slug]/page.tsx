@@ -1,11 +1,17 @@
 import algorithms from "@/data/algorithms/algorithms.json";
 import { CodeViewer } from "@/components/algorithm/CodeViewer";
-import { BubbleSortPlayer } from "@/components/algorithm/Visualizer/BubbleSortPlayer";
+import { SortingPlayer } from "@/components/algorithm/Visualizer/SortingPlayer";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardContent, CardTitle } from "@/components/ui/Card";
 import { notFound } from "next/navigation";
 
 const locales = ["ko", "en"] as const;
+
+export function generateStaticParams() {
+  return algorithms.flatMap((a) =>
+    locales.map((locale) => ({ locale, slug: a.slug }))
+  );
+}
 
 export default async function AlgorithmDetailPage({
   params,
@@ -38,14 +44,20 @@ export default async function AlgorithmDetailPage({
         <Card>
           <CardContent className="space-y-4 p-6">
             <CardTitle>Visualizer</CardTitle>
-            <BubbleSortPlayer />
+            <SortingPlayer
+              algorithmSlug={algorithm.slug}
+              sampleInput={algorithm.sampleInput}
+            />
           </CardContent>
         </Card>
 
         <Card>
           <CardContent className="space-y-4 p-6">
             <CardTitle>{locale === "ko" ? "코드 예제" : "Code Example"}</CardTitle>
-            <CodeViewer algorithmSlug={algorithm.slug} codeExamples={algorithm.codeExamples} />
+            <CodeViewer
+              algorithmSlug={algorithm.slug}
+              codeExamples={algorithm.codeExamples}
+            />
           </CardContent>
         </Card>
       </div>
