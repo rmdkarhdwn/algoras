@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { CodeViewer } from "@/components/algorithm/CodeViewer";
-import { BubbleSortPlayer } from "@/components/algorithm/Visualizer/BubbleSortPlayer";
+import { SortingPlayer } from "@/components/algorithm/Visualizer/SortingPlayer";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardContent, CardTitle } from "@/components/ui/Card";
 import { algorithms, getAlgorithmBySlug } from "@/lib/content";
@@ -70,7 +70,7 @@ export default async function AlgorithmDetailPage({
         <Card>
           <CardContent className="space-y-4 p-6">
             <CardTitle>{t("visualizerTitle")}</CardTitle>
-            <BubbleSortPlayer />
+            <SortingPlayer algorithmSlug={algorithm.slug} sampleInput={algorithm.sampleInput} />
           </CardContent>
         </Card>
 
