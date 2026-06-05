@@ -4,32 +4,119 @@
     "algorithms": "Algorithms",
     "dataStructures": "Data Structures"
   },
+  "footer": {
+    "tagline": "A visual learning space for algorithms"
+  },
   "home": {
     "badge": "Algorithm Atlas",
     "kicker": "Interactive Learning Platform",
     "title": "Understand Algorithms Visually",
-    "description": "Step through each algorithm, compare code side by side, and build intuition for complexity — all in one interactive space.",
+    "description": "Step through algorithm flows, compare code side by side, and build intuition for complexity in one interactive learning space.",
     "primaryCta": "Browse algorithms",
     "secondaryCta": "Explore data structures",
     "sideLabel": "Starter Metrics",
     "highlights": [
-      { "title": "Algorithms", "value": "3 ready" },
-      { "title": "Data Structures", "value": "2 mapped" },
+      { "title": "Algorithms", "value": "5 ready" },
+      { "title": "Data Structures", "value": "3 mapped" },
       { "title": "Locale Routes", "value": "ko / en" }
     ],
     "sections": [
       {
         "title": "Sorting Algorithms",
-        "description": "Visualize Bubble, Quick, and Merge Sort step by step"
+        "description": "Follow Bubble, Selection, Insertion, Merge, and Quick Sort step by step."
       },
       {
         "title": "Data Structures",
-        "description": "Interact with Arrays, Stacks, and Queues hands-on"
+        "description": "Manipulate Arrays, Stacks, and Queues to learn their core operations."
       },
       {
-        "title": "Complexity Chart",
-        "description": "Compare time and space complexity across algorithms at a glance"
+        "title": "Complexity Comparison",
+        "description": "Compare time and space complexity across structures and algorithms at a glance."
       }
     ]
+  },
+  "algorithmsPage": {
+    "badge": "Algorithm Catalog",
+    "title": "Sorting Algorithm Collection",
+    "description": "A catalog for comparing sorting ideas, complexity trade-offs, and code examples in one place.",
+    "detailCta": "View details",
+    "bestLabel": "Best"
+  },
+  "algorithmDetail": {
+    "category": "Sorting Algorithm",
+    "difficulty": "Difficulty",
+    "averageTime": "Average Time",
+    "spaceComplexity": "Space Complexity",
+    "visualizerTitle": "Visualizer",
+    "visualizerDescription": "Play through the sample array or enter your own values to inspect each step.",
+    "codeTitle": "Code Example",
+    "codeDescription": "Follow the code lines connected to the active visualization step.",
+    "complexityTitle": "Complexity Summary",
+    "keyNotesTitle": "Key Notes",
+    "complexityLine": "Best {best}, average {average}, worst {worst}",
+    "sampleSizeLine": "Sample input size: {count}",
+    "comparisonLine": "The shared player structure makes it easy to compare this algorithm against the others."
+  },
+  "dataStructuresPage": {
+    "badge": "Data Structures",
+    "title": "Data Structure Library",
+    "description": "A practical overview of common structures, highlighting core operation costs and the scenarios where each shines.",
+    "detailCta": "View details"
+  },
+  "dataStructureDetail": {
+    "coreOperations": "Core Operations",
+    "recommendedUseCases": "Recommended Use Cases",
+    "codeTitle": "Code Example"
+  },
+  "visualizer": {
+    "emptyState": "Enter an array and start the animation.",
+    "inputLabel": "Custom Array Input",
+    "inputPlaceholder": "Example: 5, 3, 8, 1, 4",
+    "apply": "Apply",
+    "minError": "Please enter at least two numbers.",
+    "maxError": "You can enter up to 12 numbers.",
+    "step": "Step",
+    "reset": "Reset",
+    "previous": "Previous step",
+    "pause": "Pause",
+    "play": "Play",
+    "next": "Next step",
+    "ariaLabel": "Sorting visualization"
+  },
+  "codeViewer": {
+    "hintIdle": "Press play to begin.",
+    "tooltipEmpty": "Hover a line to inspect its explanation."
+  },
+  "complexity": {
+    "best": "Best",
+    "average": "Average",
+    "worst": "Worst",
+    "space": "Space",
+    "access": "Access",
+    "search": "Search",
+    "insertion": "Insertion",
+    "deletion": "Deletion"
+  },
+  "seo": {
+    "layout": {
+      "title": "Algoras",
+      "description": "An interactive learning platform for exploring algorithms and data structures visually.",
+      "keywords": ["algorithms", "data structures", "sorting visualizer", "coding interview", "Algoras"]
+    },
+    "home": {
+      "title": "Algoras | Interactive Algorithm Learning",
+      "description": "Learn sorting algorithms and data structures with step-by-step visualizations, code examples, and complexity comparisons.",
+      "keywords": ["algorithm learning", "data structure visualizer", "sorting algorithms", "coding interview prep"]
+    },
+    "algorithms": {
+      "title": "Sorting Algorithm Collection | Algoras",
+      "description": "Compare Bubble, Selection, Insertion, Merge, and Quick Sort with visual walkthroughs and code examples.",
+      "keywords": ["sorting algorithms", "Bubble Sort", "Quick Sort", "Merge Sort", "algorithm visualizer"]
+    },
+    "dataStructures": {
+      "title": "Data Structure Library | Algoras",
+      "description": "Study Array, Stack, and Queue with complexity summaries, code examples, and practical use cases.",
+      "keywords": ["data structures", "Array", "Stack", "Queue", "complexity"]
+    }
   }
 }

@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { IBM_Plex_Mono, Noto_Sans_KR } from "next/font/google";
+import { headers } from "next/headers";
 import "./globals.css";
 
 const bodyFont = Noto_Sans_KR({
@@ -14,18 +14,16 @@ const monoFont = IBM_Plex_Mono({
   weight: ["400", "500"],
 });
 
-export const metadata: Metadata = {
-  title: "Algoras",
-  description: "Interactive algorithm and data structure learning platform.",
-};
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const locale = headersList.get("x-next-intl-locale") ?? "ko";
+
   return (
-    <html lang="ko" className={`${bodyFont.variable} ${monoFont.variable}`}>
+    <html lang={locale} className={`${bodyFont.variable} ${monoFont.variable}`}>
       <body>{children}</body>
     </html>
   );

@@ -1,17 +1,21 @@
 import type { AlgorithmStep } from "@/lib/algorithms/types";
+import type { AppLocale } from "@/lib/site";
 
-export function generateBubbleSortSteps(input: number[]): AlgorithmStep[] {
+export function generateBubbleSortSteps(input: number[], locale: AppLocale = "ko"): AlgorithmStep[] {
   const arr = [...input];
   const steps: AlgorithmStep[] = [];
   const sorted: number[] = [];
   const n = arr.length;
+  const isKo = locale === "ko";
 
   steps.push({
     array: [...arr],
     comparing: [],
     swapping: [],
     sorted: [],
-    description: "정렬 시작. 인접한 두 원소를 비교합니다.",
+    description: isKo
+      ? "정렬 시작. 인접한 두 원소를 비교합니다."
+      : "Starting sort. Adjacent values are compared one pair at a time.",
   });
 
   for (let i = 0; i < n - 1; i++) {
@@ -21,7 +25,9 @@ export function generateBubbleSortSteps(input: number[]): AlgorithmStep[] {
         comparing: [j, j + 1],
         swapping: [],
         sorted: [...sorted],
-        description: `arr[${j}]=${arr[j]}와 arr[${j + 1}]=${arr[j + 1]} 비교`,
+        description: isKo
+          ? `arr[${j}]=${arr[j]}와 arr[${j + 1}]=${arr[j + 1]} 비교`
+          : `Compare arr[${j}]=${arr[j]} and arr[${j + 1}]=${arr[j + 1]}`,
       });
 
       if (arr[j] > arr[j + 1]) {
@@ -31,7 +37,9 @@ export function generateBubbleSortSteps(input: number[]): AlgorithmStep[] {
           comparing: [],
           swapping: [j, j + 1],
           sorted: [...sorted],
-          description: `arr[${j}]와 arr[${j + 1}] 교환 → [${arr[j]}, ${arr[j + 1]}]`,
+          description: isKo
+            ? `arr[${j}]와 arr[${j + 1}] 교환 → [${arr[j]}, ${arr[j + 1]}]`
+            : `Swap arr[${j}] and arr[${j + 1}] -> [${arr[j]}, ${arr[j + 1]}]`,
         });
       }
     }
@@ -42,7 +50,9 @@ export function generateBubbleSortSteps(input: number[]): AlgorithmStep[] {
       comparing: [],
       swapping: [],
       sorted: [...sorted],
-      description: `패스 ${i + 1} 완료. ${arr[n - 1 - i]}이(가) 제자리에 놓였습니다.`,
+      description: isKo
+        ? `패스 ${i + 1} 완료. ${arr[n - 1 - i]}이(가) 제자리에 놓였습니다.`
+        : `Pass ${i + 1} complete. ${arr[n - 1 - i]} is now in its final position.`,
     });
   }
 
@@ -52,7 +62,7 @@ export function generateBubbleSortSteps(input: number[]): AlgorithmStep[] {
     comparing: [],
     swapping: [],
     sorted: [...sorted],
-    description: "정렬 완료!",
+    description: isKo ? "정렬 완료!" : "Sorting complete!",
   });
 
   return steps;

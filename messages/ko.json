@@ -4,6 +4,9 @@
     "algorithms": "알고리즘",
     "dataStructures": "자료구조"
   },
+  "footer": {
+    "tagline": "알고리즘을 눈으로 이해하는 학습 공간"
+  },
   "home": {
     "badge": "Algorithm Atlas",
     "kicker": "Interactive Learning Platform",
@@ -13,23 +16,107 @@
     "secondaryCta": "자료구조 보기",
     "sideLabel": "Starter Metrics",
     "highlights": [
-      { "title": "Algorithms", "value": "3 ready" },
-      { "title": "Data Structures", "value": "2 mapped" },
+      { "title": "Algorithms", "value": "5 ready" },
+      { "title": "Data Structures", "value": "3 mapped" },
       { "title": "Locale Routes", "value": "ko / en" }
     ],
     "sections": [
       {
         "title": "정렬 알고리즘",
-        "description": "단계별 시각화로 Bubble, Quick, Merge Sort 이해하기"
+        "description": "Bubble, Selection, Insertion, Merge, Quick Sort를 단계별로 따라갑니다."
       },
       {
         "title": "자료구조",
-        "description": "Array, Stack, Queue를 직접 조작하며 학습"
+        "description": "Array, Stack, Queue를 직접 조작하며 핵심 연산을 익힙니다."
       },
       {
         "title": "복잡도 비교",
-        "description": "알고리즘별 시간/공간 복잡도를 한눈에 비교"
+        "description": "시간 복잡도와 공간 복잡도를 한눈에 비교할 수 있습니다."
       }
     ]
+  },
+  "algorithmsPage": {
+    "badge": "Algorithm Catalog",
+    "title": "정렬 알고리즘 컬렉션",
+    "description": "정렬 알고리즘의 핵심 아이디어와 복잡도, 코드 예제를 한 화면에서 비교할 수 있는 카탈로그입니다.",
+    "detailCta": "자세히 보기",
+    "bestLabel": "최선"
+  },
+  "algorithmDetail": {
+    "category": "정렬 알고리즘",
+    "difficulty": "난이도",
+    "averageTime": "평균 시간",
+    "spaceComplexity": "공간 복잡도",
+    "visualizerTitle": "시각화",
+    "visualizerDescription": "샘플 배열을 재생하거나 직접 값을 입력해 단계별 흐름을 추적할 수 있습니다.",
+    "codeTitle": "코드 예제",
+    "codeDescription": "현재 시각화 단계와 연결된 코드 라인을 함께 따라가며 알고리즘의 구조를 익힙니다.",
+    "complexityTitle": "복잡도 요약",
+    "keyNotesTitle": "핵심 포인트",
+    "complexityLine": "최선 {best}, 평균 {average}, 최악 {worst}",
+    "sampleSizeLine": "샘플 입력 길이: {count}",
+    "comparisonLine": "같은 플레이어 구조를 사용하므로 다른 정렬 알고리즘과도 바로 비교할 수 있습니다."
+  },
+  "dataStructuresPage": {
+    "badge": "Data Structures",
+    "title": "자료구조 라이브러리",
+    "description": "배열부터 큐까지, 핵심 연산의 비용과 적합한 사용처를 빠르게 비교할 수 있는 자료구조 목록입니다.",
+    "detailCta": "자세히 보기"
+  },
+  "dataStructureDetail": {
+    "coreOperations": "핵심 연산",
+    "recommendedUseCases": "추천 사용처",
+    "codeTitle": "코드 예제"
+  },
+  "visualizer": {
+    "emptyState": "배열을 입력하고 시작하세요",
+    "inputLabel": "배열 직접 입력",
+    "inputPlaceholder": "예: 5, 3, 8, 1, 4",
+    "apply": "적용",
+    "minError": "2개 이상의 숫자를 입력하세요.",
+    "maxError": "최대 12개까지 입력 가능합니다.",
+    "step": "스텝",
+    "reset": "처음으로",
+    "previous": "이전 스텝",
+    "pause": "일시정지",
+    "play": "재생",
+    "next": "다음 스텝",
+    "ariaLabel": "정렬 시각화"
+  },
+  "codeViewer": {
+    "hintIdle": "재생 버튼을 눌러 시작하세요",
+    "tooltipEmpty": "라인 위에 마우스를 올려 설명을 확인할 수 있습니다."
+  },
+  "complexity": {
+    "best": "최선",
+    "average": "평균",
+    "worst": "최악",
+    "space": "공간",
+    "access": "접근",
+    "search": "탐색",
+    "insertion": "삽입",
+    "deletion": "삭제"
+  },
+  "seo": {
+    "layout": {
+      "title": "Algoras",
+      "description": "알고리즘과 자료구조를 시각적으로 학습할 수 있는 인터랙티브 교육 플랫폼입니다.",
+      "keywords": ["알고리즘", "자료구조", "정렬 시각화", "코딩 테스트", "Algoras"]
+    },
+    "home": {
+      "title": "Algoras | 인터랙티브 알고리즘 학습",
+      "description": "정렬 알고리즘과 자료구조를 단계별 시각화, 코드 예제, 복잡도 비교와 함께 학습할 수 있는 인터랙티브 플랫폼입니다.",
+      "keywords": ["알고리즘 학습", "자료구조 시각화", "정렬 알고리즘", "코딩 테스트"]
+    },
+    "algorithms": {
+      "title": "정렬 알고리즘 컬렉션 | Algoras",
+      "description": "Bubble, Selection, Insertion, Merge, Quick Sort를 시각화와 코드 예제로 비교해보세요.",
+      "keywords": ["정렬 알고리즘", "Bubble Sort", "Quick Sort", "Merge Sort", "시각화"]
+    },
+    "dataStructures": {
+      "title": "자료구조 라이브러리 | Algoras",
+      "description": "Array, Stack, Queue의 핵심 연산과 사용처를 코드와 복잡도 비교로 학습하세요.",
+      "keywords": ["자료구조", "Array", "Stack", "Queue", "복잡도"]
+    }
   }
 }

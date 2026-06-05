@@ -6,7 +6,7 @@ markdown# Algoras
 
 ## 기술 스택
 
-- 프레임워크: Next.js 14 (App Router)
+- 프레임워크: Next.js 16.2.7 (App Router)
 - 언어: TypeScript
 - 스타일: TailwindCSS
 - 애니메이션: Framer Motion

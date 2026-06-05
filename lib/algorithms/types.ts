@@ -1,3 +1,5 @@
+import type { AppLocale } from "@/lib/site";
+
 export type AlgorithmStep = {
   array: number[];
   comparing: number[];
@@ -13,3 +15,5 @@ export type ComplexityProfile = {
   worst: string;
   space: string;
 };
+
+export type StepGenerator = (input: number[], locale?: AppLocale) => AlgorithmStep[];

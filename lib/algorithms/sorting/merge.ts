@@ -1,10 +1,18 @@
 import type { AlgorithmStep } from "@/lib/algorithms/types";
+import type { AppLocale } from "@/lib/site";
 
-export function generateMergeSortSteps(input: number[]): AlgorithmStep[] {
+export function generateMergeSortSteps(input: number[], locale: AppLocale = "ko"): AlgorithmStep[] {
   const arr = [...input];
   const steps: AlgorithmStep[] = [];
+  const isKo = locale === "ko";
 
-  steps.push({ array: [...arr], comparing: [], swapping: [], sorted: [], description: "정렬 시작." });
+  steps.push({
+    array: [...arr],
+    comparing: [],
+    swapping: [],
+    sorted: [],
+    description: isKo ? "정렬 시작." : "Starting sort.",
+  });
 
   function mergeSort(start: number, end: number) {
     if (end - start <= 1) return;
@@ -27,7 +35,9 @@ export function generateMergeSortSteps(input: number[]): AlgorithmStep[] {
         comparing: [],
         swapping: [ti],
         sorted: [],
-        description: `인덱스 ${ti} 에 ${arr[ti]} 병합`,
+        description: isKo
+          ? `인덱스 ${ti} 에 ${arr[ti]} 병합`
+          : `Merge ${arr[ti]} into index ${ti}`,
       });
       ti++;
     }
@@ -40,7 +50,7 @@ export function generateMergeSortSteps(input: number[]): AlgorithmStep[] {
     comparing: [],
     swapping: [],
     sorted: arr.map((_, i) => i),
-    description: "정렬 완료!",
+    description: isKo ? "정렬 완료!" : "Sorting complete!",
   });
 
   return steps;

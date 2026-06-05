@@ -1,10 +1,31 @@
-import dataStructures from "@/data/algorithms/data-structures.json";
-import { Badge } from "@/components/ui/Badge";
-import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/Card";
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Badge } from "@/components/ui/Badge";
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/Card";
+import { dataStructures } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/metadata";
+import { isValidLocale, type AppLocale } from "@/lib/site";
 
-const locales = ["ko", "en"] as const;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isValidLocale(locale)) return {};
+
+  const t = await getTranslations({ locale, namespace: "seo.dataStructures" });
+
+  return buildPageMetadata({
+    locale: locale as AppLocale,
+    title: t("title"),
+    description: t("description"),
+    keywords: (t.raw("keywords") as string[]) ?? [],
+    pathname: "/data-structures",
+  });
+}
 
 export default async function DataStructuresPage({
   params,
@@ -13,22 +34,18 @@ export default async function DataStructuresPage({
 }) {
   const { locale } = await params;
 
-  if (!locales.includes(locale as (typeof locales)[number])) {
+  if (!isValidLocale(locale)) {
     notFound();
   }
+
+  const t = await getTranslations({ locale, namespace: "dataStructuresPage" });
 
   return (
     <section className="space-y-8">
       <div className="space-y-3">
-        <Badge>{locale === "ko" ? "Data Structures" : "Data Structures"}</Badge>
-        <h1 className="text-3xl font-bold tracking-tight">
-          {locale === "ko" ? "자료구조 라이브러리" : "Data Structure Library"}
-        </h1>
-        <p className="max-w-3xl text-lg leading-8 text-muted">
-          {locale === "ko"
-            ? "배열부터 큐까지, 핵심 연산의 비용과 적합한 사용처를 빠르게 비교할 수 있는 자료구조 목록입니다."
-            : "A practical overview of common structures, focusing on operation costs and the situations where each shines."}
-        </p>
+        <Badge>{t("badge")}</Badge>
+        <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
+        <p className="max-w-3xl text-lg leading-8 text-muted">{t("description")}</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
@@ -39,14 +56,14 @@ export default async function DataStructuresPage({
                 <CardTitle>{structure.name}</CardTitle>
                 <Badge>{structure.category}</Badge>
               </div>
-              <CardDescription>{structure.description[locale as "ko" | "en"]}</CardDescription>
+              <CardDescription>{structure.description[locale as AppLocale]}</CardDescription>
               <div className="flex items-center justify-between text-sm text-muted">
-                <span>{structure.primaryUseCase[locale as "ko" | "en"]}</span>
+                <span>{structure.primaryUseCase[locale as AppLocale]}</span>
                 <Link
                   href={`/${locale}/data-structures/${structure.slug}`}
                   className="font-semibold text-accent-strong"
                 >
-                  {locale === "ko" ? "자세히 보기" : "View details"}
+                  {t("detailCta")}
                 </Link>
               </div>
             </CardContent>
