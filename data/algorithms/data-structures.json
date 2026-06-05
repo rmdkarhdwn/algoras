@@ -27,6 +27,33 @@
     }
   },
   {
+    "slug": "stack",
+    "name": "Stack",
+    "category": "linear",
+    "description": {
+      "ko": "마지막에 들어온 값이 먼저 나가는 LIFO 구조로, 함수 호출 스택과 되돌리기(undo) 기능에 자연스럽게 맞는 자료구조입니다.",
+      "en": "A LIFO structure where the last item in is always the first out, naturally fitting call stacks and undo histories."
+    },
+    "primaryUseCase": {
+      "ko": "역순 처리가 필요할 때",
+      "en": "When reverse-order processing is needed"
+    },
+    "useCases": {
+      "ko": ["함수 호출 스택 관리", "괄호 유효성 검사", "DFS 탐색", "되돌리기(Undo) 기능"],
+      "en": ["Function call stack management", "Bracket validation", "Depth-first search", "Undo functionality"]
+    },
+    "complexity": {
+      "access": "O(n)",
+      "search": "O(n)",
+      "insertion": "O(1)",
+      "deletion": "O(1)"
+    },
+    "codeExamples": {
+      "typescript": "class Stack<T> {\n  private items: T[] = [];\n\n  push(item: T): void {\n    this.items.push(item);\n  }\n\n  pop(): T | undefined {\n    return this.items.pop();\n  }\n\n  peek(): T | undefined {\n    return this.items[this.items.length - 1];\n  }\n\n  get size(): number {\n    return this.items.length;\n  }\n\n  isEmpty(): boolean {\n    return this.items.length === 0;\n  }\n}",
+      "python": "class Stack:\n    def __init__(self):\n        self._items = []\n\n    def push(self, item):\n        self._items.append(item)\n\n    def pop(self):\n        return self._items.pop() if self._items else None\n\n    def peek(self):\n        return self._items[-1] if self._items else None\n\n    @property\n    def size(self):\n        return len(self._items)\n\n    def is_empty(self):\n        return len(self._items) == 0"
+    }
+  },
+  {
     "slug": "queue",
     "name": "Queue",
     "category": "linear",
