@@ -1,5 +1,12 @@
 "use client";
 
+import {
+  CTRL_BTN_BG,
+  CTRL_BTN_BG_HOVER,
+  CTRL_BTN_BORDER,
+  CTRL_BTN_COLOR,
+  TEXT_MUTED,
+} from "@/components/algorithm/Visualizer/styles";
 import { useVisualizationStore } from "@/stores/visualizationStore";
 import { useEffect, useRef } from "react";
 
@@ -69,15 +76,15 @@ function CtrlBtn({
       title={title}
       className="flex h-10 w-10 items-center justify-center rounded-xl transition-colors disabled:opacity-30"
       style={{
-        border: "1px solid rgba(212,175,55,0.25)",
-        background: "rgba(212,175,55,0.06)",
-        color: "#D4AF37",
+        border: CTRL_BTN_BORDER,
+        background: CTRL_BTN_BG,
+        color: CTRL_BTN_COLOR,
       }}
       onMouseEnter={(e) => {
-        if (!disabled) (e.currentTarget as HTMLButtonElement).style.background = "rgba(212,175,55,0.14)";
+        if (!disabled) (e.currentTarget as HTMLButtonElement).style.background = CTRL_BTN_BG_HOVER;
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.background = "rgba(212,175,55,0.06)";
+        (e.currentTarget as HTMLButtonElement).style.background = CTRL_BTN_BG;
       }}
     >
       {children}
@@ -119,7 +126,7 @@ export function VisualizerControls() {
   return (
     <div className="flex flex-col gap-5">
       {/* Step counter */}
-      <div className="flex items-center justify-between text-xs" style={{ color: "rgba(245,245,245,0.4)" }}>
+      <div className="flex items-center justify-between text-xs" style={{ color: TEXT_MUTED }}>
         <span>스텝</span>
         <span>
           {steps.length > 0 ? `${currentStep + 1} / ${steps.length}` : "—"}
@@ -163,7 +170,7 @@ export function VisualizerControls() {
 
       {/* Speed slider */}
       <div className="flex items-center gap-3">
-        <span className="w-6 text-xs" style={{ color: "rgba(245,245,245,0.4)" }}>
+        <span className="w-6 text-xs" style={{ color: TEXT_MUTED }}>
           1×
         </span>
         <input
@@ -175,12 +182,12 @@ export function VisualizerControls() {
           onChange={(e) => setSpeed(Number(e.target.value))}
           className="flex-1 cursor-pointer accent-[#D4AF37]"
         />
-        <span className="w-6 text-right text-xs" style={{ color: "rgba(245,245,245,0.4)" }}>
+        <span className="w-6 text-right text-xs" style={{ color: TEXT_MUTED }}>
           5×
         </span>
         <span
           className="w-8 text-right text-xs font-semibold"
-          style={{ color: "#D4AF37" }}
+          style={{ color: CTRL_BTN_COLOR }}
         >
           {speed}×
         </span>
