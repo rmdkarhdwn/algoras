@@ -107,6 +107,47 @@ const annotations: Record<string, Record<string, LangAnnotation>> = {
       stepLineMap: { initial: 2, comparing: 6, swapping: 7, sorted: 10 },
     },
   },
+  "selection-sort": {
+    typescript: {
+      lines: {
+        1: "함수 시그니처 — 숫자 배열을 받아 정렬된 새 배열을 반환합니다",
+        2: "원본 배열을 복사해 불변성을 유지합니다",
+        4: "외부 루프 — 현재 위치에 들어갈 최솟값을 찾기 시작합니다",
+        5: "현재 시작 인덱스를 최솟값 후보로 둡니다",
+        7: "남은 구간을 순회하며 더 작은 값을 찾습니다",
+        8: "새 최솟값을 발견하면 minIndex를 갱신합니다",
+        12: "찾아낸 최솟값을 현재 시작 위치와 교환합니다",
+        15: "정렬이 끝난 배열을 반환합니다",
+      },
+      stepLineMap: { initial: 2, comparing: 8, swapping: 12, sorted: 15 },
+    },
+    javascript: {
+      lines: {
+        1: "함수 선언 — 숫자 배열을 받아 정렬된 새 배열을 반환합니다",
+        2: "원본 배열을 복사해 불변성을 유지합니다",
+        4: "외부 루프 — 현재 위치에 들어갈 최솟값을 찾기 시작합니다",
+        5: "현재 시작 인덱스를 최솟값 후보로 둡니다",
+        7: "남은 구간을 순회하며 더 작은 값을 찾습니다",
+        8: "새 최솟값을 발견하면 minIndex를 갱신합니다",
+        12: "찾아낸 최솟값을 현재 시작 위치와 교환합니다",
+        15: "정렬이 끝난 배열을 반환합니다",
+      },
+      stepLineMap: { initial: 2, comparing: 8, swapping: 12, sorted: 15 },
+    },
+    python: {
+      lines: {
+        1: "함수 정의 — 리스트를 받아 정렬된 새 리스트를 반환합니다",
+        2: "원본 리스트를 복사합니다",
+        3: "외부 루프 — 현재 위치에 들어갈 최솟값을 찾기 시작합니다",
+        4: "현재 시작 인덱스를 최솟값 후보로 둡니다",
+        5: "남은 구간을 순회합니다",
+        6: "더 작은 값을 찾으면 min_index를 갱신합니다",
+        7: "선택한 최솟값을 현재 위치와 교환합니다",
+        8: "정렬이 끝난 리스트를 반환합니다",
+      },
+      stepLineMap: { initial: 2, comparing: 6, swapping: 7, sorted: 8 },
+    },
+  },
   "merge-sort": {
     typescript: {
       lines: {
@@ -148,6 +189,41 @@ const annotations: Record<string, Record<string, LangAnnotation>> = {
         10: "남은 원소를 이어 붙여 반환합니다",
       },
       stepLineMap: { initial: 3, comparing: 7, swapping: 7, sorted: 10 },
+    },
+  },
+  "quick-sort": {
+    typescript: {
+      lines: {
+        1: "함수 시그니처 — 숫자 배열을 받아 정렬된 새 배열을 반환합니다",
+        2: "기저 조건 — 길이 1 이하면 그대로 반환합니다",
+        6: "첫 원소를 pivot으로 선택하고 나머지를 분리합니다",
+        7: "pivot 이하 원소를 smaller 배열로 분류합니다",
+        8: "pivot 초과 원소를 larger 배열로 분류합니다",
+        10: "왼쪽 부분, pivot, 오른쪽 부분을 재귀적으로 결합합니다",
+      },
+      stepLineMap: { initial: 6, comparing: 7, swapping: 10, sorted: 10 },
+    },
+    javascript: {
+      lines: {
+        1: "함수 선언 — 숫자 배열을 받아 정렬된 새 배열을 반환합니다",
+        2: "기저 조건 — 길이 1 이하면 그대로 반환합니다",
+        6: "첫 원소를 pivot으로 선택하고 나머지를 분리합니다",
+        7: "pivot 이하 원소를 smaller 배열로 분류합니다",
+        8: "pivot 초과 원소를 larger 배열로 분류합니다",
+        10: "왼쪽 부분, pivot, 오른쪽 부분을 재귀적으로 결합합니다",
+      },
+      stepLineMap: { initial: 6, comparing: 7, swapping: 10, sorted: 10 },
+    },
+    python: {
+      lines: {
+        1: "함수 정의 — 리스트를 받아 정렬된 새 리스트를 반환합니다",
+        2: "기저 조건 — 길이 1 이하면 그대로 반환합니다",
+        3: "pivot과 나머지 원소를 분리합니다",
+        4: "pivot 이하 원소를 smaller 배열로 분류합니다",
+        5: "pivot 초과 원소를 larger 배열로 분류합니다",
+        6: "양쪽을 재귀적으로 정렬한 뒤 합쳐 반환합니다",
+      },
+      stepLineMap: { initial: 3, comparing: 4, swapping: 6, sorted: 6 },
     },
   },
 };
