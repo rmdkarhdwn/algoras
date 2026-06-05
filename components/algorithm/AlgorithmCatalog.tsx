@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Badge } from "@/components/ui/Badge";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/Card";
 
 type Algorithm = {
@@ -13,7 +12,12 @@ type Algorithm = {
   description: { ko: string; en: string };
 };
 
-const DIFFICULTIES = ["All", "Easy", "Medium", "Hard"] as const;
+const DIFFICULTY_OPTIONS = [
+  { value: "All", label: { ko: "전체", en: "All" } },
+  { value: "Easy", label: { ko: "Easy", en: "Easy" } },
+  { value: "Medium", label: { ko: "Medium", en: "Medium" } },
+  { value: "Hard", label: { ko: "Hard", en: "Hard" } },
+] as const;
 
 type Props = {
   algorithms: Algorithm[];
@@ -49,18 +53,18 @@ export function AlgorithmCatalog({ algorithms, locale }: Props) {
           style={{ minWidth: 180 }}
         />
         <div className="flex gap-1.5">
-          {DIFFICULTIES.map((d) => (
+          {DIFFICULTY_OPTIONS.map((option) => (
             <button
-              key={d}
+              key={option.value}
               type="button"
-              onClick={() => setDifficulty(d)}
+              onClick={() => setDifficulty(option.value)}
               className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
-                difficulty === d
+                difficulty === option.value
                   ? "bg-[#D4AF37]/15 text-[#D4AF37]"
                   : "text-white/40 hover:text-white/70"
               }`}
             >
-              {d}
+              {option.label[locale as "ko" | "en"]}
             </button>
           ))}
         </div>

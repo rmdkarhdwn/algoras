@@ -13,14 +13,13 @@ type Props = {
 
 export function SortingPlayer({ algorithmSlug, sampleInput }: Props) {
   const { steps, currentStep, setSteps } = useVisualizationStore();
-  const [inputValue, setInputValue] = useState(sampleInput.join(", "));
+  const [inputValue, setInputValue] = useState(() => sampleInput.join(", "));
   const [error, setError] = useState("");
 
   useEffect(() => {
     const gen = STEP_GENERATORS[algorithmSlug];
     if (gen) setSteps(gen(sampleInput));
-    setInputValue(sampleInput.join(", "));
-  }, [algorithmSlug]);
+  }, [algorithmSlug, sampleInput, setSteps]);
 
   function handleApply() {
     const parsed = inputValue
